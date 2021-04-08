@@ -8,9 +8,9 @@
 * 安装echarts：npm install echarts --save  
 
 # 2021-04-08
-> 更新说明
-> 1.添加echarts实例
-> 2.添加文件统计模板
+> 更新说明  
+> 1.添加echarts实例  
+> 2.添加文件统计模板  
 
 
 # vue_element02
