@@ -14,6 +14,7 @@
     <a href="#/jiakoufenTable">点击查看加扣分排行视图</a>
     <!-- <a href="#/ditorView">点击查看富文本视图</a> -->
     <a href="#/dynamicSelect">点击查看动态辅助输入框</a>
+    <a href="#/quillDemo">点击查看富文本视图</a>
 
     
     <br/> <br/>

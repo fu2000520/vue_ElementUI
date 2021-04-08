@@ -4,17 +4,16 @@
 *	安装nrm：  npm i -g nrm  
 *	查看镜像源：nrm ls  
 *	选定镜像源：nrm use taobao  
-* 下载镜像文件：npm i  
-* 安装echarts：npm install echarts --save  
-
-
- 
+*   下载镜像文件：npm i  
+*   安装echarts：npm install echarts --save   //报表样式
+*   安装Quill-Editor：npm install vue-quill-editor -S   //用于富文本框
 
 
 #### 2021-04-08更新说明  
 > 1.添加echarts实例  (Echarts01.vue)  
 > 2.添加文件统计模板  (DataList2.vue / DataList3.vue)  
-> 3.添加输入框动态辅助输入  (dynamicSelect.vue)  
+> 3.添加输入框动态辅助输入  (dynamicSelect.vue)   
+> 4.添加富文本框功能 (quillDemo.vue)  
 
 #### vue_element02生成
 
