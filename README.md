@@ -1,14 +1,28 @@
-# vue_element02
+### 运行须知：
+#### 前端环境搭建  
+*	安装node.js  
+*	安装nrm：  npm i -g nrm  
+*	查看镜像源：nrm ls  
+*	选定镜像源：nrm use taobao  
+* 下载镜像文件：npm i  
+* 安装echarts：npm install echarts --save  
+
+#### 2021-04-08更新说明  
+> 1.添加echarts实例  
+> 2.添加文件统计模板  
+
+
+#### vue_element02生成
 
 > A Vue.js project
 
-## Build Setup
+#### Build Setup
 
 ``` bash
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:8081
 npm run dev
 
 # build for production with minification
