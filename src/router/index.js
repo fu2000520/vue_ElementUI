@@ -16,6 +16,7 @@ import Echarts01 from "../components/scnAirDemo/Echarts01"
 import jiakoufenTable from "../components/scnAirDemo/jiakoufenTable"
 import vueFangfaDemo from "../components/scnAirDemo/vueFangfaDemo"
 // import ditorView from "../components/scnAirDemo/ditorView"
+import dynamicSelect from "../components/scnAirDemo/dynamicSelect"
 
 Vue.use(Router)
 export default new Router({
@@ -35,5 +36,6 @@ export default new Router({
     { path: '/jiakoufenTable', component: jiakoufenTable },
     { path: '/vueFangfaDemo', component: vueFangfaDemo },
     // { path: '/ditorView', component: ditorView },
+    { path: '/dynamicSelect', component: dynamicSelect },
   ]
 })

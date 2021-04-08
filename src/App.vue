@@ -13,6 +13,7 @@
     <a href="#/vueFangfaDemo">点击查看Vue方法demo</a>
     <a href="#/jiakoufenTable">点击查看加扣分排行视图</a>
     <!-- <a href="#/ditorView">点击查看富文本视图</a> -->
+    <a href="#/dynamicSelect">点击查看动态辅助输入框</a>
 
     
     <br/> <br/>
