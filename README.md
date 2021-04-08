@@ -8,14 +8,13 @@
 * 安装echarts：npm install echarts --save  
 
 
-#### 2021-04-08 b9c42e0  更新说明  
-> 1.添加输入框动态辅助输入 
+ 
 
 
 #### 2021-04-08更新说明  
-> 1.添加echarts实例  
-> 2.添加文件统计模板  
-
+> 1.添加echarts实例  (Echarts01.vue)
+> 2.添加文件统计模板  (DataList2.vue / DataList3.vue)
+> 3.添加输入框动态辅助输入  (dynamicSelect.vue)
 
 #### vue_element02生成
 
