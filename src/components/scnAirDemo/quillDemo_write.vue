@@ -1,13 +1,7 @@
 
 <template>
   <div>
-
-    <el-tabs type="border-card">
-  <el-tab-pane label="富文本填写"> <quillDemo_write></quillDemo_write></el-tab-pane>
-  <el-tab-pane label="富文本阅读"><quillDemo_read></quillDemo_read></el-tab-pane>
-</el-tabs>
-   
-    <!-- <div style="padding-left: 20%; padding-top: 5%; padding-right: 20%">
+    <div style="padding-left: 20%; padding-top: 5%; padding-right: 20%">
       <quill-editor
         ref="myQuillEditor"
         v-model="content"
@@ -19,38 +13,11 @@
       ></quill-editor>
       <br />
       <div>
-        <el-button type="primary" plain @click="loadTxt"
-          >查看后台内容</el-button
-        >
-
         <el-button type="success" plain @click="saveTxt">提交到后台</el-button>
         <el-button type="info" plain @click="open">预览</el-button>
       </div>
     </div>
-    <div>
-      <el-dialog
-        title="查看加扣分规则"
-        :visible.sync="dialogVisibleLoad"
-        width="60%"
-        height="70%"
-      >
-        <div class="editor_wrap" style="border: 1px dashed #000">
-          <quill-editor
-            class="editor"
-            v-model="contentLoad"
-            ref="myLookQuillEditor"
-            @focus="onEditorFocusLoad($event)"
-            @ready="onEditorFocusLoad($event)"
-            :options="editorOptionLoad"
-          ></quill-editor>
-        </div>
-        <span slot="footer" class="dialog-footer">
-          <el-button type="primary" @click="dialogVisibleLoad = false"
-            >确 定</el-button
-          >
-        </span>
-      </el-dialog>
-    </div>
+
     <div>
       <el-dialog
         title="预览加扣分规则"
@@ -58,7 +25,7 @@
         width="60%"
         height="70%"
       >
-        <div class="editor_wrap" style="border: 1px dashed #000">
+        <div class="editor_wrap" style="border: 1px solid  #000">
           <quill-editor
             class="editor"
             v-model="contentLook"
@@ -74,14 +41,12 @@
           >
         </span>
       </el-dialog>
-    </div> -->
+    </div>
   </div>
 </template>
 
 
 <script>
-import quillDemo_write from "./quillDemo_write.vue";
-import quillDemo_read from "./quillDemo_read.vue";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
@@ -92,27 +57,19 @@ export default {
   components: {
     quillEditor,
   },
-  components: {
-    //将导入的Vue 注册为组件
-    quillDemo_write,
-    quillDemo_read,
-  },
   data() {
     return {
       dialogVisible: false,
-      dialogVisibleLoad: false,
       // 富文本编辑器默认内容
       content: "",
       contentLook: "",
-      contentLoad1: "",
-      contentLoad: "",
       //富文本编辑器配置
       editorOption: {
         modules: {
           //工具栏定义的
           toolbar: [
             ["bold", "italic", "underline", "strike"], // 加粗 斜体 下划线 删除线 -----['bold', 'italic', 'underline', 'strike']
-            ["blockquote", "code-block"], // 引用  代码块-----['blockquote', 'code-block']
+            ["blockquote"], // 引用  代码块-----['blockquote', 'code-block']
             [{ align: [] }], // 对齐方式-----[{ align: [] }]
             [{ header: 1 }, { header: 2 }], // 1、2 级标题-----[{ header: 1 }, { header: 2 }]
             [{ list: "ordered" }, { list: "bullet" }], // 有序、无序列表-----[{ list: 'ordered' }, { list: 'bullet' }]
@@ -129,16 +86,6 @@ export default {
         style: "max-height",
       },
       editorOptionLook: {
-        theme: "bubble",
-        placeholder: "未添加加扣分规则",
-      },
-
-      editorOptionLook: {
-        theme: "bubble",
-        placeholder: "未添加加扣分规则",
-      },
-
-      editorOptionLoad: {
         theme: "bubble",
         placeholder: "未添加加扣分规则",
       },
@@ -161,7 +108,7 @@ export default {
     //内容改变事件
     onEditorChange({ quill, html, text }) {
       // console.log("editor change!", quill, html, text);
-      console.log(html);
+      // console.log(html);
       this.content = html;
       quill.enable(true);
     },
@@ -170,21 +117,14 @@ export default {
       // 富文本获得焦点时的事件
       editor.enable(false); // 在获取焦点的时候禁用
     },
-    onEditorFocusLoad(editor) {
-      // 富文本获得焦点时的事件
-      editor.enable(false); // 在获取焦点的时候禁用
-    },
-
     open() {
       this.contentLook = this.content;
       this.dialogVisible = true;
     },
     saveTxt() {
-      console.log("提交数据", this.content);
       this.axios
         .post("saveTxt?txt=" + this.content)
         .then((res) => {
-          console.log(res);
           if (res.data == "success") {
             this.$message({
               message: "提交成功",
@@ -196,23 +136,6 @@ export default {
               type: "danger",
             });
           }
-        })
-        .catch((err) => {
-          this.$message({
-            message: "接口异常",
-            type: "danger",
-          });
-        });
-    },
-    loadTxt() {
-      this.axios
-        .post("loadTxt")
-        .then((res) => {
-          console.log(res.data);
-          this.contentLoad1 = res.data;
-          this.contentLoad = this.contentLoad1;
-          console.log("contentLoad", this.contentLoad);
-          this.dialogVisibleLoad = true;
         })
         .catch((err) => {
           this.$message({
