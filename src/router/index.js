@@ -18,6 +18,7 @@ import vueFangfaDemo from "../components/scnAirDemo/vueFangfaDemo"
 // import ditorView from "../components/scnAirDemo/ditorView"
 import dynamicSelect from "../components/scnAirDemo/dynamicSelect"
 import quillDemo from "../components/scnAirDemo/quillDemo"
+import fileUoload from "../components/scnAirDemo/fileUoload"
 
 Vue.use(Router)
 export default new Router({
@@ -38,6 +39,7 @@ export default new Router({
     { path: '/vueFangfaDemo', component: vueFangfaDemo },
     // { path: '/ditorView', component: ditorView },
     { path: '/dynamicSelect', component: dynamicSelect },
+    { path: '/fileUoload', component: fileUoload },
     { path: '/quillDemo', component: quillDemo },
   ]
 })
