@@ -8,6 +8,11 @@
 *   安装echarts：npm install echarts --save   //报表样式
 *   安装Quill-Editor：npm install vue-quill-editor -S   //用于富文本框
 
+#### 2021-04-11更新说明 
+> 1.添加文件上传组件 (fileUoload.vue)
+
+#### 2021-04-09更新说明 
+> 1.添加富文本框添加和查看组件方式分离  (quillDemo_write.vue  /  quillDemo_read.vue)
 
 #### 2021-04-08更新说明  
 > 1.添加echarts实例  (Echarts01.vue)  
