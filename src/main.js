@@ -16,8 +16,8 @@ Vue.prototype.$echarts = echarts
 
 Vue.use(VueAxios, axios);
 Vue.prototype.$axios = axios;
-Vue.$http = axios;
 
+axios.defaults.baseURL = '/api'  //关键代码
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
