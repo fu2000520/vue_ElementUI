@@ -25,10 +25,12 @@
         <el-row>
           <el-upload
             class="upload-demo"
-            ref="update"
+            ref="upload"
             :action="action"
             :on-preview="handlePreview"
             :on-remove="handleRemove"
+            :on-change="handleChange"
+            :before-upload="beforeUpload"
             :before-remove="beforeRemove"
             multiple
             :limit="1"
@@ -38,7 +40,7 @@
           >
             <el-button size="small" type="primary">点击上传</el-button>
             <div slot="tip" class="el-upload__tip">
-              只能上传jpg/png文件，且不超过500kb
+              只能上传jpg/png文件，且不超过{{ this.reportSize }}M
             </div>
           </el-upload>
         </el-row>
@@ -53,6 +55,7 @@
         >
       </div>
     </el-dialog>
+    <div><el-button @click="applyFlag = true">新增</el-button></div>
   </div>
 </template>
 <script>
@@ -62,8 +65,8 @@ export default {
     return {
       action: "/upload", //文件上传接口
       applyFlag: true, //弹出层标示
-      reportFormatRole: "", //需验证的文件格式
-      reportSize: "", //需验证文件的大小
+      reportFormatRole: "jpg,png", //需验证的文件格式
+      reportSize: 1, //需验证文件的大小
       submitFormLoading: false, //提交表单加载
       data: {
         templateName: "security",
@@ -103,28 +106,20 @@ export default {
     handleSaveToSubmit(applyForm) {
       this.$refs[applyForm].validate((valid) => {
         if (valid) {
-          //   if (
-          //     this.uploadItems.length == 0 ||
-          //     !this.beforeUpload() ||
-          //     this.currentItems.length == 0
-          //   ) {
-          //     this.currentItems = "";
-          //     this.$common.error("请正确添加附件");
-          //     return;
-          //   }
+          if (!this.beforeUpload()) {
+            // this.$refs.upload.clearFiles();
+            return;
+          }
 
           console.log("添加成功");
-          this.$refs.update.submit();
+          this.$refs.upload.submit();
         } else {
-          this.$notify.error({
-            title: "错误",
-            message: "请按规则填写",
-          });
-          //   this.$common.error("请按规则填写");
+          this.$message.warning("请正确添加表单");
         }
       });
     },
     handlePreview(file) {
+      console.log("进入handlePreview");
       console.log(file);
     },
     handleExceed(files, fileList) {
@@ -135,11 +130,76 @@ export default {
       );
     },
     beforeRemove(file, fileList) {
-      return this.$confirm(`确定移除 ${file.name}？`);
+      this.file.fileList=[]
+      console.log("进入beforeRemove");
     },
-
+    /* 上传前钩子 */
+    beforeUpload(file) {
+      console.log("进入beforeUpload");
+      return this.checkFileTypeSize();
+    },
+    /* 检查文件类型大小 */
+    checkFileTypeSize() {
+      if (this.file.fileList.length == 0) {
+        this.$message({
+          message: `请选择上传附件`,
+          type: "warning",
+          duration: 6000,
+        });
+        return false;
+      }
+      console.log("进入checkFileTypeSize");
+      let isPass = true; //验证通过标示
+      let type = this.reportFormatRole; //验证文件类型
+      var bigSize = Number(this.reportSize); //验证文件大小
+      //遍历文件
+      for (let i = 0; i < this.file.fileList.length; i++) {
+        //获取文件的后缀名
+        const extension = this.file.fileList[i].name.substring(
+          this.file.fileList[i].name.lastIndexOf(".") + 1
+        );
+        console.log(extension);
+        //遍历验证类型，看是否符合格式
+        if (type && type.indexOf(extension) === -1) {
+          this.$message({
+            message: `文件名:${this.file.fileList[i].name}文件类型不支持`,
+            type: "warning",
+            duration: 6000,
+          });
+          isPass = false;
+        }
+        //这里做文件大小限制
+        const isLt10M = this.file.fileList[i].size / 1024 / 1024 < bigSize;
+        console.log(isLt10M);
+        if (!isLt10M) {
+          this.$message({
+            message:
+              `文件名:${this.file.fileList[i].name}大小超过` +
+              bigSize +
+              `M限制了`,
+            type: "warning",
+            duration: 6000,
+          });
+          isPass = false;
+        }
+      }
+      if (!isPass) {
+        console.log("isPass", isPass);
+        this.$emit("loading", false);
+      }
+      return isPass;
+    },
     handleRemove(file, fileList) {
+      console.log("进入handleRemove");
       console.log(file, fileList);
+    },
+    handleChange(files, fileList) {
+      console.log("进入handleChange");
+      console.log("fileList", fileList);
+      this.file.fileList = fileList;
+      console.log("this.file.fileList", this.file.fileList);
+
+      this.checkFileTypeSize();
     },
     // //文件标签发生改变触发事件
     // handleChange(files, fileList) {
