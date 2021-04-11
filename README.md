@@ -39,4 +39,7 @@ npm install echarts --save
 npm install vue-quill-editor -S
 ```
 
+
+[联系作者](http://wpa.qq.com/msgrd?v=3&uin=212522771&site=qq&menu=yes)
+
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
