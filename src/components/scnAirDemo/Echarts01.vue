@@ -699,14 +699,14 @@ export default {
       //获取数据 例如：$Http.post....  （rest）=>{}
       let rest = this.echartsDate.LineDate2;
       //格式转换
-      const newOrg = this.objArrtransArr(rest, "orgName", "num");
+      // const newOrg = this.objArrtransArr(rest, "orgName", "num");
 
       // 树形图表
       myChart.setOption({
         title: { text: "在Vue中使用echarts" },
         tooltip: {},
         xAxis: {
-          data: newOrg,
+          data: ["张三","李四","王五","赵六","冯琦",],
         },
         yAxis: {},
         series: [

@@ -18,7 +18,7 @@
     <!-- <a href="#/fileUoload">文件上传</a> -->
 
     <br />
-    <el-tabs type="border-card" tab-position="left" style="height: 80%">
+    <el-tabs type="border-card" v-model="activeName" tab-position="left" style="height: 80%" >
       <el-tab-pane label="富文本视图" name="quillDemo">
         <quillDemo></quillDemo>
       </el-tab-pane>
@@ -85,6 +85,11 @@ export default {
     dataList,
     dataList2,
   },
+  data () {
+    return {
+      activeName:"quillDemo"
+    }
+  }
 };
 </script>
 <style>
