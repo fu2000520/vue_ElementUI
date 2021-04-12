@@ -32,6 +32,7 @@
             :on-change="handleChange"
             :before-upload="beforeUpload"
             :before-remove="beforeRemove"
+            :on-error="handleError"
             multiple
             :limit="1"
             :on-exceed="handleExceed"
@@ -200,6 +201,12 @@ export default {
       console.log("this.file.fileList", this.file.fileList);
 
       this.checkFileTypeSize();
+    },
+      handleError(err, file, fileList) {
+      console.log("上传失败");
+      console.log(file);
+      console.log(this.fileList);
+       this.$message.error('上传失败');
     },
     // //文件标签发生改变触发事件
     // handleChange(files, fileList) {
