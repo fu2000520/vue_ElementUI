@@ -51,7 +51,6 @@
   </el-tabs>
 </template>
 
-      
 <script>
 export default {
   name: "jiakoufenTable",

@@ -64,7 +64,7 @@ export default {
   data() {
     return {
       action: "/upload", //文件上传接口
-      applyFlag: true, //弹出层标示
+      applyFlag: false, //弹出层标示
       reportFormatRole: "jpg,png", //需验证的文件格式
       reportSize: 1, //需验证文件的大小
       submitFormLoading: false, //提交表单加载

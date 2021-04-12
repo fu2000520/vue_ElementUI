@@ -1,30 +1,27 @@
 <template>
   <div>
     <el-button @click="loginEcharts()">加载图表</el-button>
-    <el-button type="text" @click="openDialog()">点击打开 Dialog</el-button>
-    <el-button type="text" @click="toChangeChartsdData()"
-      >点击打开折叠柱状图</el-button
-    >
     <hr />
 
     <div id="myChart" :style="{ width: '500px', height: '300px' }"></div>
-    <div id="myChart2" :style="{ width: '600px', height: '400px' }"></div>
-    <div id="myChart3" :style="{ width: '80%', height: '400px' }"></div>
-    <el-dialog
-      title="提示"
-      :visible.sync="dialogVisible"
-      width="30%"
-      :before-close="handleClose"
-    >
-      <span>这是一段信息</span>
-      <span slot="footer" class="dialog-footer">
-        <el-input v-model="name"></el-input>
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false"
-          >确 定</el-button
-        >
-      </span>
-    </el-dialog>
+    <div id="myChart4" :style="{ width: '800px', height: '400px' }"></div>
+    <div id="myChart3" :style="{ width: '90%', height: '400px' }"></div>
+    <div id="dialogDiv">
+      <el-dialog title="" :visible.sync="dialogVisible" width="40%">
+        <span>{{ name }}下子类别详情</span>
+        <span slot="footer" class="dialog-footer">
+          <div id="myChart2" :style="{ width: '800px', height: '400px' }"></div>
+        </span>
+      </el-dialog>
+    </div>
+    <div id="dialogDiv2">
+      <el-dialog title="" :visible.sync="dialogVisible2" width="40%">
+        <span>危险源子类别详情</span>
+        <span slot="footer" class="dialog-footer">
+          <div id="myChart5" :style="{ width: '800px', height: '400px' }"></div>
+        </span>
+      </el-dialog>
+    </div>
   </div>
 </template>
 
@@ -35,6 +32,7 @@ export default {
     return {
       name: "",
       dialogVisible: false,
+      dialogVisible2: false,
       msg: "Welcome to Your Vue.js App",
       qqName: "",
       qqPwd: "",
@@ -64,23 +62,23 @@ export default {
             seRiskList: [
               //危险源信息
               {
-                rtsId: "1123", //危险源子类别ID
-                typeSub: "危险源子类别1", //危险源子类别名称
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
                 count: 4, //危险源统计数量
               },
               {
-                rtsId: "1124", //危险源子类别ID
-                typeSub: "危险源子类别2", //危险源子类别名称
-                count: 1, //危险源统计数量
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 3, //危险源统计数量
               },
               {
-                rtsId: "1125", //危险源子类别ID
-                typeSub: "危险源子类别3", //危险源子类别名称
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
                 count: 2, //危险源统计数量
               },
               {
-                rtsId: "1125", //危险源子类别ID
-                typeSub: "危险源子类别4", //危险源子类别名称
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
                 count: 2, //危险源统计数量
               },
             ],
@@ -91,49 +89,563 @@ export default {
             seRiskList: [
               //危险源信息
               {
-                rtsId: "1123", //危险源子类别ID
-                typeSub: "危险源子类别1", //危险源子类别名称
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
                 count: 1, //危险源统计数量
               },
               {
-                rtsId: "1124", //危险源子类别ID
-                typeSub: "危险源子类别2", //危险源子类别名称
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
                 count: 4, //危险源统计数量
               },
               {
-                rtsId: "1125", //危险源子类别ID
-                typeSub: "危险源子类别3", //危险源子类别名称
-                count: 4, //危险源统计数量
-              },
-              {
-                rtsId: "1125", //危险源子类别ID
-                typeSub: "危险源子类别4", //危险源子类别名称
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
                 count: 1, //危险源统计数量
               },
             ],
-          }, {
+          },
+          {
+            pkid: "3132",
+            orgName: "办公部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 8, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+            ],
+          },
+          {
             pkid: "3132",
             orgName: "财务部",
             seRiskList: [
               //危险源信息
               {
-                rtsId: "1123", //危险源子类别ID
-                typeSub: "危险源子类别1", //危险源子类别名称
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
                 count: 1, //危险源统计数量
               },
               {
-                rtsId: "1124", //危险源子类别ID
-                typeSub: "危险源子类别2", //危险源子类别名称
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
                 count: 4, //危险源统计数量
               },
               {
-                rtsId: "1125", //危险源子类别ID
-                typeSub: "危险源子类别3", //危险源子类别名称
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "办公部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
                 count: 4, //危险源统计数量
               },
               {
-                rtsId: "1125", //危险源子类别ID
-                typeSub: "危险源子类别4", //危险源子类别名称
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 3, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "财务部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "办公部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "财务部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "办公部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "财务部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "办公部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 3, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "财务部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "321132",
+            orgName: "办公部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "财务部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "办公部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 3, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "财务部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "办公部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "财务部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "办公部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "财务部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "办公部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
+                count: 2, //危险源统计数量
+              },
+            ],
+          },
+          {
+            pkid: "3132",
+            orgName: "财务部",
+            seRiskList: [
+              //危险源信息
+              {
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
+                count: 1, //危险源统计数量
+              },
+              {
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
+                count: 4, //危险源统计数量
+              },
+              {
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
                 count: 1, //危险源统计数量
               },
             ],
@@ -144,102 +656,23 @@ export default {
             seRiskList: [
               //危险源信息
               {
-                rtsId: "1123", //危险源子类别ID
-                typeSub: "危险源子类别1", //危险源子类别名称
+                rtsId: "1123", //危险源父类别ID
+                typeSub: "危险源父类别1", //危险源父类别名称
                 count: 1, //危险源统计数量
               },
               {
-                rtsId: "1124", //危险源子类别ID
-                typeSub: "危险源子类别2", //危险源子类别名称
-                count: 2, //危险源统计数量
-              },
-              {
-                rtsId: "1125", //危险源子类别ID
-                typeSub: "危险源子类别3", //危险源子类别名称
-                count: 2, //危险源统计数量
-              },
-              {
-                rtsId: "1125", //危险源子类别ID
-                typeSub: "危险源子类别4", //危险源子类别名称
-                count: 4, //危险源统计数量
-              },
-            ],
-          },
-          {
-            pkid: "3132",
-            orgName: "财务部",
-            seRiskList: [
-              //危险源信息
-              {
-                rtsId: "1123", //危险源子类别ID
-                typeSub: "危险源子类别1", //危险源子类别名称
-                count: 1, //危险源统计数量
-              },
-              {
-                rtsId: "1124", //危险源子类别ID
-                typeSub: "危险源子类别2", //危险源子类别名称
-                count: 2, //危险源统计数量
-              },
-              {
-                rtsId: "1125", //危险源子类别ID
-                typeSub: "危险源子类别3", //危险源子类别名称
-                count: 1, //危险源统计数量
-              },
-              {
-                rtsId: "1125", //危险源子类别ID
-                typeSub: "危险源子类别4", //危险源子类别名称
-                count: 4, //危险源统计数量
-              },
-            ],
-          }, {
-            pkid: "3132",
-            orgName: "财务部",
-            seRiskList: [
-              //危险源信息
-              {
-                rtsId: "1123", //危险源子类别ID
-                typeSub: "危险源子类别1", //危险源子类别名称
-                count: 1, //危险源统计数量
-              },
-              {
-                rtsId: "1124", //危险源子类别ID
-                typeSub: "危险源子类别2", //危险源子类别名称
+                rtsId: "1124", //危险源父类别ID
+                typeSub: "危险源父类别2", //危险源父类别名称
                 count: 4, //危险源统计数量
               },
               {
-                rtsId: "1125", //危险源子类别ID
-                typeSub: "危险源子类别3", //危险源子类别名称
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别3", //危险源父类别名称
                 count: 4, //危险源统计数量
               },
               {
-                rtsId: "1125", //危险源子类别ID
-                typeSub: "危险源子类别4", //危险源子类别名称
-                count: 1, //危险源统计数量
-              },
-            ],
-          }, {
-            pkid: "3132",
-            orgName: "财务部",
-            seRiskList: [
-              //危险源信息
-              {
-                rtsId: "1123", //危险源子类别ID
-                typeSub: "危险源子类别1", //危险源子类别名称
-                count: 1, //危险源统计数量
-              },
-              {
-                rtsId: "1124", //危险源子类别ID
-                typeSub: "危险源子类别2", //危险源子类别名称
-                count: 4, //危险源统计数量
-              },
-              {
-                rtsId: "1125", //危险源子类别ID
-                typeSub: "危险源子类别3", //危险源子类别名称
-                count: 4, //危险源统计数量
-              },
-              {
-                rtsId: "1125", //危险源子类别ID
-                typeSub: "危险源子类别4", //危险源子类别名称
+                rtsId: "1125", //危险源父类别ID
+                typeSub: "危险源父类别4", //危险源父类别名称
                 count: 1, //危险源统计数量
               },
             ],
@@ -253,8 +686,8 @@ export default {
   methods: {
     loginEcharts() {
       this.drawLine();
-      this.drawCircle();
       this.drawFoldLine();
+      this.drawCircle4();
     },
     openDialog() {
       this.dialogVisible = !this.dialogVisible;
@@ -296,11 +729,7 @@ export default {
       let myChart2 = this.$echarts.init(document.getElementById("myChart2"));
       // 绘制图表
       myChart2.setOption({
-        title: {
-          text: "某站点用户访问来源",
-          subtext: "纯属虚构",
-          left: "center",
-        },
+        title: {},
         tooltip: {
           trigger: "item",
         },
@@ -310,16 +739,25 @@ export default {
         },
         series: [
           {
-            name: "访问来源",
+            name: "危险源子类别详情",
             type: "pie",
-            radius: "50%",
+            radius: "60%",
             data: [
-              { value: 1048, name: "搜索引擎" },
-              { value: 735, name: "直接访问" },
-              { value: 580, name: "邮件营销" },
-              { value: 484, name: "联盟广告" },
-              { value: 300, name: "视频广告" },
+              { value: 104, name: "危险源子类别1" },
+              { value: 735, name: "危险源子类别2" },
+              { value: 580, name: "危险源子类别3" },
+              { value: 484, name: "危险源子类别4" },
+              { value: 300, name: "危险源子类别15" },
             ],
+            itemStyle: {
+              normal: {
+                label: {
+                  show: true,
+                  formatter: "{c}次 ({d}%)",
+                },
+                labelLine: { show: true },
+              },
+            },
             emphasis: {
               itemStyle: {
                 shadowBlur: 10,
@@ -331,10 +769,109 @@ export default {
         ],
       });
     },
+    //饼图图表
+    drawCircle5() {
+      // 基于准备好的dom，初始化echarts实例
+      let myChart5 = this.$echarts.init(document.getElementById("myChart5"));
+      // 绘制图表
+      myChart5.setOption({
+        title: {},
+        tooltip: {
+          trigger: "item",
+        },
+        legend: {
+          orient: "vertical",
+          left: "left",
+        },
+        series: [
+          {
+            name: "危险源子类别详情",
+            type: "pie",
+            radius: "60%",
+            data: [
+              { value: 114, name: "危险源子类别1" },
+              { value: 75, name: "危险源子类别2" },
+              { value: 50, name: "危险源子类别3" },
+              { value: 84, name: "危险源子类别4" },
+              { value: 30, name: "危险源子类别15" },
+            ],
+            itemStyle: {
+              normal: {
+                label: {
+                  show: true,
+                  formatter: "{c}次 ({d}%)",
+                },
+                labelLine: { show: true },
+              },
+            },
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)",
+              },
+            },
+          },
+        ],
+      });
+    },
+    //饼图图表
+    drawCircle4() {
+      // 基于准备好的dom，初始化echarts实例
+      let myChart4 = this.$echarts.init(document.getElementById("myChart4"));
+      // 绘制图表
+      myChart4.setOption({
+        title: {
+          text: "危险源父类总占比",
+          left: "center",
+        },
+        tooltip: {
+          trigger: "item",
+        },
+        legend: {
+          orient: "vertical",
+          left: "left",
+        },
+        series: [
+          {
+            name: "危险源子类别详情",
+            type: "pie",
+            radius: "70%",
+            data: [
+              { value: 12, name: "危险源父类别1" },
+              { value: 3, name: "危险源父类别2" },
+              { value: 1, name: "危险源父类别3" },
+              { value: 2, name: "危险源父类别4" },
+              { value: 3, name: "危险源父类别15" },
+            ],
+            itemStyle: {
+              normal: {
+                label: {
+                  show: true,
+                  formatter: "{c}次 ({d}%)",
+                },
+                labelLine: { show: true },
+              },
+            },
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)",
+              },
+            },
+          },
+        ],
+      });
+      myChart4.on("click", (params) => {
+        console.log("您点击了我");
+        this.drawCircle5();
+        this.dialogVisible2 = true;
+      });
+    },
     drawFoldLine() {
       let newArr = this.toChangeChartsdData();
       var myChart3 = this.$echarts.init(document.getElementById("myChart3"));
-
       myChart3.setOption({
         tooltip: {
           trigger: "axis",
@@ -362,14 +899,30 @@ export default {
         },
         series: newArr,
       });
+      myChart3.on("click", (params) => {
+        console.log("您点击了我");
+        console.log("params", params);
+        this.name = params.name + ` -->  ` + params.seriesName;
+        this.openDialog();
+
+        //根据name查询部门ID
+        console.log("params", params.name);
+
+        //根据name查询危险源父类别
+        console.log("seriesName", params.seriesName);
+
+        //根据部门ID各危险源父类查询其下所有的危险源子类
+
+        this.drawCircle();
+      });
     },
     //弹窗关闭事件
     handleClose(done) {
-      this.$confirm("确认关闭？")
-        .then((_) => {
-          done();
-        })
-        .catch((_) => {});
+      // this.$confirm("确认关闭？")
+      //   .then((_) => {
+      //     done();
+      //   })
+      //   .catch((_) => {});
     },
     //echarts类型数据转换
     objArrtransArr(olddata, oldval, oldname) {
@@ -390,6 +943,8 @@ export default {
       let arrTypeSub = [];
       let newArr = [];
       let orgName = [];
+      this.echartsDate.flodLineDateTitleSeOrg = [];
+      this.echartsDate.flodLineDateTitleSeRiskTypeSub = [];
       let echartsT = {
         name: "",
         type: "bar",
@@ -404,11 +959,13 @@ export default {
       };
       for (let i of this.echartsDate.oldDate) {
         this.echartsDate.flodLineDateTitleSeOrg.push(i.orgName);
+        // this.echartsDate.flodLineDateTitleSeOrg.push(i.pkid);
         for (let j of i.seRiskList) {
-          let { typeSub, count } = j;
+          let { typeSub, count, rtsId } = j;
           arr.push({
             typeSub,
             count,
+            rtsId,
           });
         }
         for (let i of arr) {
