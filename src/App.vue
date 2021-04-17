@@ -52,6 +52,9 @@
       <el-tab-pane label="点击查看dataList（多选框+禁用）" name="dataList2">
         <dataList2></dataList2>
       </el-tab-pane>
+      <el-tab-pane label="点击查看步骤计时器  " name="buzhoujishiqi">
+        <buzhoujishiqi></buzhoujishiqi>
+      </el-tab-pane>
       
     </el-tabs>
     <br />
@@ -70,6 +73,7 @@ import btndetail from "./components/ButtonDetail";
 import links from "./components/Link";
 import dataList from "./components/DataList";
 import dataList2 from "./components/DataList2";
+import buzhoujishiqi from "./components/Mintdemo/Buzhoujishiqi";
 export default {
   name: "App",
   components: {
@@ -84,6 +88,7 @@ export default {
     links,
     dataList,
     dataList2,
+    buzhoujishiqi,
   },
   data () {
     return {

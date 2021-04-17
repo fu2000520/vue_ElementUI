@@ -58,7 +58,7 @@ export default {
         oldDate: [
           {
             pkid: "3132",
-            orgName: "办公部",
+            orgName: "中国南方111111  ",
             seRiskList: [
               //危险源信息
               {
@@ -85,7 +85,7 @@ export default {
           },
           {
             pkid: "3132",
-            orgName: "财务部",
+            orgName: "中国东方",
             seRiskList: [
               //危险源信息
               {
@@ -112,7 +112,7 @@ export default {
           },
           {
             pkid: "3132",
-            orgName: "办公部",
+            orgName: "中国上海",
             seRiskList: [
               //危险源信息
               {
