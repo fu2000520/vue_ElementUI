@@ -1,10 +1,45 @@
 <template>
-  <el-autocomplete
-    v-model="state"
-    :fetch-suggestions="querySearchAsync"
-    placeholder="请输入内容"
-    @select="handleSelect"
-  ></el-autocomplete>
+  <div>
+    <div>
+      <el-autocomplete
+        v-model="state"
+        :fetch-suggestions="querySearchAsync"
+        placeholder="请输入内容"
+        @select="handleSelect"
+      ></el-autocomplete>
+    </div>
+    <div>
+      <el-select
+        ref="selectDom"
+        v-model="value"
+        multiple
+        filterable
+        remote
+        placeholder="请输入关键词"
+        :remote-method="remoteMethod"
+        :loading="loading"
+      >
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
+          <span style="float: left">{{ item.label }}</span>
+          <span
+            style="
+              float: right;
+              color: #8492a6;
+              font-size: 13px;
+              padding-right: 15px;
+            "
+            >{{ item.value }}</span
+          >
+        </el-option>
+      </el-select>
+      {{ this.value }}
+    </div>
+  </div>
 </template>
 <script>
 export default {
@@ -14,19 +49,23 @@ export default {
       state: "",
       timeout: null,
       saveMsg: "",
+      value: ["700820"],//所选中的当事人
+      options: [],//当事人待选值
+      list:"",
+      loading: false,
     };
   },
   methods: {
     querySearchAsync(queryString, cb) {
       //根據輸入的内容從後臺模糊查詢數據
 
-    //   this.axios
-    //     .post("orgQuery", {
-    //       oname: queryString,
-    //     })
-    //     .then((res) => {
-    //       this.saveMsg = this.objArrtransArr(res.data);
-    //     });
+      //   this.axios
+      //     .post("orgQuery", {
+      //       oname: queryString,
+      //     })
+      //     .then((res) => {
+      //       this.saveMsg = this.objArrtransArr(res.data);
+      //     });
 
       //假數據
       this.saveMsg = [
@@ -76,7 +115,64 @@ export default {
       });
       return newArr;
     },
+
+    remoteMethod(query) {
+      this.list = [
+        {
+          value: "700820",
+          label: "张三",
+        },
+        {
+          value: "700821",
+          label: "李四",
+        },
+        {
+          value: "700822",
+          label: "王五",
+        },
+        {
+          value: "700823",
+          label: "赵六",
+        },
+        {
+          value: "700824",
+          label: "吴九",
+        },
+        {
+          value: "700825",
+          label: "方十",
+        },
+        {
+          value: "700826",
+          label: "赵六",
+        },
+      ];
+
+      // 解决回显时显示为id的问题
+      this.list.forEach((item) => {
+        this.$refs["selectDom"].cachedOptions.push({
+          currentLabel: item.label,
+          currentValue: item.value,
+          label: item.label,
+          value: item.value,
+        });
+      });
+      if (query !== "") {
+        this.loading = true;
+        setTimeout(() => {
+          this.loading = false;
+          this.options = this.list;
+          // .filter((item) => {
+          //   return item.value.toLowerCase().indexOf(query.toLowerCase()) > -1;
+          // });
+        }, 200);
+      } else {
+        this.options = [];
+      }
+    },
   },
-  mounted() {},
+  mounted() {
+    this.remoteMethod()
+  },
 };
 </script>

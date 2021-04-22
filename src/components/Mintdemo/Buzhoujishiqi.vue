@@ -18,9 +18,7 @@
     <div>
       <button @click="shenbao()">申报</button>
       <button @click="checkBox_shenbao = true">申报</button>
-      <button @click="checkBox_shibie = true" v-if="checkBox_shenbao">
-        识别
-      </button>
+      <button @click="checkBox_shibie = true" v-if="checkBox_shenbao"> 识别 </button>
       <button @click="checkBox_submit = true" v-if="checkBox_shibie">
         提交
       </button>

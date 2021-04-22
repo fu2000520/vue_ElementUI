@@ -110,6 +110,7 @@ export default {
       // console.log("editor change!", quill, html, text);
       // console.log(html);
       this.content = html;
+      this.contentLook = this.content;
       quill.enable(true);
     },
     //-----------------分割线
