@@ -56,6 +56,10 @@
         <buzhoujishiqi></buzhoujishiqi>
       </el-tab-pane>
       
+      <el-tab-pane label="点击查看通知滚动  " name="msgGunDong">
+        <msgGunDong></msgGunDong>
+      </el-tab-pane>
+      
     </el-tabs>
     <br />
   </div>
@@ -66,14 +70,15 @@ import quillDemo from "./components/scnAirDemo/quillDemo";
 import fileUoload from "./components/scnAirDemo/fileUoload";
 import dynamicSelect from "./components/scnAirDemo/dynamicSelect";
 import jiakoufenTable from "./components/scnAirDemo/jiakoufenTable";
-import echarts01 from "./components/scnAirDemo/echarts01";
-import dataList3 from "./components/scnAirDemo/dataList3";
-import form01 from "./components/form01";
+import echarts01 from "./components/scnAirDemo/Echarts01";
+import dataList3 from "./components/scnAirDemo/DataList3";
+import form01 from "./components/Form01";
 import btndetail from "./components/ButtonDetail";
 import links from "./components/Link";
 import dataList from "./components/DataList";
 import dataList2 from "./components/DataList2";
 import buzhoujishiqi from "./components/Mintdemo/Buzhoujishiqi";
+import msgGunDong from "./components/scnAirDemo/msgGunDong";
 export default {
   name: "App",
   components: {
@@ -89,6 +94,7 @@ export default {
     dataList,
     dataList2,
     buzhoujishiqi,
+    msgGunDong,
   },
   data () {
     return {
