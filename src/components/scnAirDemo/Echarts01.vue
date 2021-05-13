@@ -678,6 +678,8 @@ export default {
             ],
           },
         ],
+        myCharts1Title: ["张三", "李四", "王五", "赵六", "冯琦", "吴九"],
+        myCharts1Date: [5, 20, 36, 10, 10, 20],
       },
     };
   },
@@ -706,14 +708,14 @@ export default {
         title: { text: "在Vue中使用echarts" },
         tooltip: {},
         xAxis: {
-          data: ["张三","李四","王五","赵六","冯琦",],
+          data: this.echartsDate.myCharts1Title,
         },
         yAxis: {},
         series: [
           {
             name: "销量",
             type: "bar",
-            data: [5, 20, 36, 10, 10, 20],
+            data: this.echartsDate.myCharts1Date,
           },
         ],
       });
