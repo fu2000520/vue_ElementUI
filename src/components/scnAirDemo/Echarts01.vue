@@ -3,7 +3,30 @@
     <el-button @click="loginEcharts()">加载图表</el-button>
     <hr />
 
-    <div id="myChart" :style="{ width: '500px', height: '300px' }"></div>
+    <el-row>
+      <el-col :span="12">
+        <div id="myChart" :style="{ width: '100%', height: '300px' }"></div>
+      </el-col>
+      <el-col :span="2"
+        ><span>
+          <el-tooltip content="正序" placement="top">
+            <el-button
+              icon="el-icon-sort-up"
+              circle
+              @click="paixu('up')"
+            ></el-button> </el-tooltip
+        ></span>
+        <span>
+          <el-tooltip content="倒序" placement="top"
+            ><el-button
+              icon="el-icon-sort-down"
+              circle
+              @click="paixu('down')"
+            ></el-button></el-tooltip
+        ></span>
+      </el-col>
+    </el-row>
+
     <div id="myChart4" :style="{ width: '800px', height: '400px' }"></div>
     <div id="myChart3" :style="{ width: '90%', height: '400px' }"></div>
     <div id="dialogDiv">
@@ -39,13 +62,6 @@ export default {
       hiddenFlag: { charts: false },
       testData: { tableData: [] },
       echartsDate: {
-        LineDate: [
-          { id: "666", value: "实施部", num: "25" },
-          { id: "888", value: "开发部", num: "11" },
-          { id: "444", value: "人事部", num: "23" },
-          { id: "333", value: "检验部", num: "12" },
-          { id: "222", value: "运维部", num: "34" },
-        ],
         LineDate2: [
           { id: "666", orgName: "实施部1", num: "25" },
           { id: "888", orgName: "开发部2", num: "11" },
@@ -58,7 +74,7 @@ export default {
         oldDate: [
           {
             pkid: "3132",
-            orgName: "中国南方111111  ",
+            orgName: "中国南方 ",
             seRiskList: [
               //危险源信息
               {
@@ -679,7 +695,7 @@ export default {
           },
         ],
         myCharts1Title: ["张三", "李四", "王五", "赵六", "冯琦", "吴九"],
-        myCharts1Date: [5, 20, 36, 10, 10, 20],
+        myCharts1Date: [5, 20, 36, 10, 1, 20],
       },
     };
   },
@@ -898,6 +914,15 @@ export default {
         xAxis: {
           type: "category",
           data: this.echartsDate.flodLineDateTitleSeOrg, //动态  => 相当于部门
+          axisLabel: {
+            inside: false,
+            textStyle: {
+              fontSize: "15",
+            },
+            formatter: function (val) {
+              return val.split("").join("\n");
+            },
+          },
         },
         series: newArr,
       });
@@ -990,6 +1015,40 @@ export default {
         this.echartsDate.flodLineDateTitleSeRiskTypeSub.push(typeSub);
       }
       return newArr;
+    },
+
+    paixu(type) {
+      var newLineDate = this.echartsDate.myCharts1Date;
+      var newDateTitle = this.echartsDate.myCharts1Title;
+      if (newLineDate != null) {
+        for (let i = 0; i < newLineDate.length - 1; i++) {
+          for (let j = 0; j < newLineDate.length - 1 - i; j++) {
+            if (type == "up") {
+              if (newLineDate[j] > newLineDate[j + 1]) {
+                var big = Number(newLineDate[j]);
+                var bigTitle = newDateTitle[j];
+                newLineDate[j] = newLineDate[j + 1];
+                newDateTitle[j] = newDateTitle[j + 1];
+                newLineDate[j + 1] = big;
+                newDateTitle[j + 1] = bigTitle;
+              }
+            } else {
+              if (newLineDate[j] < newLineDate[j + 1]) {
+                var big = Number(newLineDate[j]);
+                var bigTitle = newDateTitle[j];
+                newLineDate[j] = newLineDate[j + 1];
+                newDateTitle[j] = newDateTitle[j + 1];
+                newLineDate[j + 1] = big;
+                newDateTitle[j + 1] = bigTitle;
+              }
+            }
+          }
+        }
+      }
+      console.log(type, newLineDate, newDateTitle);
+      this.echartsDate.myCharts1Date = newLineDate;
+      this.echartsDate.myCharts1Title = newDateTitle;
+      this.drawLine();
     },
   },
   computed: {},
