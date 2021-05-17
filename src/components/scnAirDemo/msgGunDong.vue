@@ -60,7 +60,7 @@ export default {
   padding: 8px 12px;
   margin-bottom: 10px;
   border-radius: 2px;
-  color: #e6a23c;
+  box-shadow: 1px 1px 2px #888888;
   background-color: #fdf6ec;
   overflow: hidden;
   opacity: 1;

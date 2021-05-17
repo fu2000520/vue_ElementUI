@@ -59,6 +59,9 @@
       <el-tab-pane label="点击查看通知滚动  " name="msgGunDong">
         <msgGunDong></msgGunDong>
       </el-tab-pane>
+      <el-tab-pane label="级联选择" name="jilianSelect">
+        <jilianSelect></jilianSelect>
+      </el-tab-pane>
       
     </el-tabs>
     <br />
@@ -79,6 +82,7 @@ import dataList from "./components/DataList";
 import dataList2 from "./components/DataList2";
 import buzhoujishiqi from "./components/Mintdemo/Buzhoujishiqi";
 import msgGunDong from "./components/scnAirDemo/msgGunDong";
+import jilianSelect from "./components/scnAirDemo/jilianSelect";
 export default {
   name: "App",
   components: {
@@ -95,6 +99,7 @@ export default {
     dataList2,
     buzhoujishiqi,
     msgGunDong,
+    jilianSelect
   },
   data () {
     return {

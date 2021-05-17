@@ -729,6 +729,20 @@ export default {
         yAxis: {},
         series: [
           {
+            itemStyle: {
+              normal: {
+                label: {
+                  show: true,
+                  position: "top",
+                  textStyle: {
+                    //数值样式
+                    color: "black",
+                    fontSize: 16,
+                  },
+                },
+                labelLine: { show: true },
+              },
+            },
             name: "销量",
             type: "bar",
             data: this.echartsDate.myCharts1Date,
@@ -737,8 +751,6 @@ export default {
       });
       myChart.on("click", (params) => {
         console.log("您点击了我");
-        this.name = params.name;
-        this.openDialog();
       });
     },
     //饼图图表
