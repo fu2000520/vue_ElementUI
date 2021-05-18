@@ -62,6 +62,12 @@
       <el-tab-pane label="级联选择" name="jilianSelect">
         <jilianSelect></jilianSelect>
       </el-tab-pane>
+      <el-tab-pane label="图片预览" name="thumbnail">
+        <thumbnail></thumbnail>
+      </el-tab-pane>
+      <el-tab-pane label="动态添加行及表单验证" name="Dynamic_List">
+        <Dynamic_List></Dynamic_List>
+      </el-tab-pane>
       
     </el-tabs>
     <br />
@@ -83,6 +89,8 @@ import dataList2 from "./components/DataList2";
 import buzhoujishiqi from "./components/Mintdemo/Buzhoujishiqi";
 import msgGunDong from "./components/scnAirDemo/msgGunDong";
 import jilianSelect from "./components/scnAirDemo/jilianSelect";
+import thumbnail from "./components/scnAirDemo/thumbnail";
+import Dynamic_List from "./components/scnAirDemo/Dynamic_List";
 export default {
   name: "App",
   components: {
@@ -99,7 +107,9 @@ export default {
     dataList2,
     buzhoujishiqi,
     msgGunDong,
-    jilianSelect
+    jilianSelect,
+    thumbnail,
+    Dynamic_List
   },
   data () {
     return {
